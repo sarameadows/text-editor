@@ -21,9 +21,10 @@ module.exports = () => {
       }),
       new InjectManifest({
           swSrc: './src-sw.js',
-          swDest: 'service-worker.js'
+          swDest: 'src-sw.js'
       }),
       new WebpackPwaManifest({
+          fingerprints: false,
           name: 'Just Another Text Editor',
           short_name: 'J.A.T.E.',
           description: 'Take notes with JavaScript syntax highlighting!',
@@ -36,23 +37,13 @@ module.exports = () => {
                   src: path.resolve('src/images/logo.png'),
                   sizes: [96, 128, 192, 256, 384, 512],
                   destination: path.join('assets', 'icons')
-              },
-              {
-                  src: path.resolve('src/images/logo.png'),
-                  size: '1024x1024',
-                  destination: path.join('assets', 'icons'),
-                  purpose: 'maskable'
               }
           ]
       })
     ],
-    
+
     module: {
       rules: [
-        {
-            test: /\.(png|svg|jpg|jpeg|gif)$/i,
-            type: 'asset/resource',
-        },
         {
             test: /\.css$/i,
             use: ['style-loader', 'css-loader']
