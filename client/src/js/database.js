@@ -24,7 +24,6 @@ export const putDb = async (content) => {
   const request = store.put({jate: content});
   // get confirmation of the request
   const result = await request;
-  console.log('Data saved to the database', result);
 };
 
 // Gets all the content from the database
@@ -39,7 +38,6 @@ export const getDb = async () => {
   const request = store.getAll();
   // get confirmation of the request
   const result = await request;
-  console.log('result.value', result);
   return result;
 };
 
